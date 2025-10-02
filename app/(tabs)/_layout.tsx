@@ -1,5 +1,6 @@
 import { Tabs } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 export default function TabLayout() {
   return (
@@ -11,15 +12,23 @@ export default function TabLayout() {
                    options={{ 
                     title: 'Home',
                     tabBarIcon: ({ color, focused }) => (
-                      <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
+                      <AntDesign name="home" size={24} color="black" />
                     ),
                   }}
                />
-      <Tabs.Screen name="about" 
+      <Tabs.Screen name="menuitems" 
                    options={{ 
-                      title: 'About',
+                      title: 'Menu Items',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24}/>
+            <AntDesign name="ordered-list" size={24} color="black" />
+          ),
+        }}
+      />
+      <Tabs.Screen name="createmenu" 
+                   options={{ 
+                      title: 'Create menu',
+          tabBarIcon: ({ color, focused }) => (
+            <AntDesign name="form" size={24} color="black" />
           ),
         }}
       />
