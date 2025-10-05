@@ -1,9 +1,12 @@
 import { Tabs } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { MenuProvider } from '../../context/MenuContext';
 
 export default function TabLayout() {
+
   return (
+    <MenuProvider>
     <Tabs       
     screenOptions={{
         tabBarActiveTintColor: '#ffd33d',
@@ -24,14 +27,16 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen name="createmenu" 
+      <Tabs.Screen name="createmenu"
                    options={{ 
                       title: 'Create menu',
           tabBarIcon: ({ color, focused }) => (
             <AntDesign name="form" size={24} color="black" />
+            
           ),
         }}
       />
     </Tabs>
+    </MenuProvider>
   );
 }

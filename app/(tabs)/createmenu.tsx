@@ -1,24 +1,22 @@
 import { Text, View, StyleSheet, TextInput,Button,FlatList } from 'react-native';
 import React, { useState } from 'react';
 import { Picker } from '@react-native-picker/picker';
+import { useLocalSearchParams } from 'expo-router/build/hooks';
+import { MenuItem } from '../../lib/[types]'
+import { useMenu } from '../../context/MenuContext';
 
-let nextID = 0
-
-type MenuItem = {
-  id: string
-  dishName: string
-  dishDescript: string
-  dishPrice: string
-  selectedValue: string
-}
 
 export default function CreateMenuScreen() {
+
+          const { addItem } = useMenu()
+
+
 
           const [dishName, setDishName] = useState('');
           const [dishDescript, setDishDescript] = useState('');
           const [dishPrice, setDishPrice] = useState('');
           const [selectedValue, setSelectedValue] = useState('');
-          const menuID = nextID++
+          //const menuID = Date.now().toString()
 
           const [menuItems, setMenuItems] = useState<MenuItem[]>([])
 
@@ -29,34 +27,26 @@ export default function CreateMenuScreen() {
           }
 
           const newItem : MenuItem = {
-            id: menuID.toString(), dishName, dishDescript, selectedValue, dishPrice: parseFloat(dishPrice).toFixed(2)
+            id: Date.now().toString(), dishName, dishDescript, selectedValue, dishPrice: parseFloat(dishPrice).toFixed(2)
           }
 
-          setMenuItems(prevItems => [...prevItems,newItem])
-
+          //setMenuItems(prevItems => [...prevItems,newItem])
+          addItem(newItem)
           setDishName('')
           setDishDescript('')
           setSelectedValue('')
           setDishPrice('')
+          alert('Menu item added!')
         }
 
           const renderItem = ({ item }: { item: MenuItem }) => (
     <View style={styles.menuItem}>
+      <Text style={styles.itemName}>{item.id}</Text>
       <Text style={styles.itemName}>{item.dishName} — R{item.dishPrice}</Text>
       <Text style={styles.itemCourse}>{item.selectedValue}</Text>
       <Text style={styles.itemDesc}>{item.dishDescript}</Text>
     </View>
   );
-
-
-        //   const menuItems =[
-        //     {title :dishName},
-        //     {title :dishDescript},
-        //     {title :selectedValue},
-        //     {title :dishPrice},
-        // ]
-
-
           type ItemProps = {title: string};
 
           const Item = ({title}: ItemProps) => (
@@ -64,8 +54,6 @@ export default function CreateMenuScreen() {
               <Text style={styles.title}>{title}</Text>
             </View>
           );
-
-          //const [newMenuItem, setNewMenuItem] = useState([menuItems]);
 
   return (
     <View style={styles.container}>
