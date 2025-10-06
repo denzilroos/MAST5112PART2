@@ -5,10 +5,12 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { MenuProvider } from '../../context/MenuContext';
 import { useMenu } from '../../context/MenuContext';
+import { Platform } from 'react-native';
 
 export default function Index() {
 
   const { menuItems } = useMenu();
+  let numberOfItems= menuItems.length.toString()
 
   const renderItem = ({ item }: { item: MenuItem }) => (
     <View style={styles.menuItem}>
@@ -20,7 +22,8 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>MENU</Text>
+      <Text style={styles.heading}>MENU</Text>
+      <Text style={styles.text}>Total number of menu items = {numberOfItems}</Text>
 
       <FlatList
           data={menuItems}
@@ -43,6 +46,10 @@ const styles = StyleSheet.create({
   text: {
     color: '#fff',
   },
+    heading: {
+    color: '#fff',
+    fontSize : 36,
+  },
     button: {
     fontSize: 20,
     textDecorationLine: 'underline',
@@ -51,7 +58,7 @@ const styles = StyleSheet.create({
       menuItem: {
     backgroundColor: '#fff',
     padding: 15,
-    borderRadius: 8,
+    borderRadius: 5,
     marginBottom: 10,
     borderWidth: 1,
     borderColor: '#eee',
