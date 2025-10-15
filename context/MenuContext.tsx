@@ -2,9 +2,10 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { MenuItem } from '../lib/[types]'
 
 type MenuContextType = {
-  menuItems: MenuItem[];
-  addItem: (item: MenuItem) => void;
-};
+  menuItems: MenuItem[]
+  addItem: (item: MenuItem) => void
+  removeItem: (id: string) => void
+}
 
 const MenuContext = createContext<MenuContextType | undefined>(undefined);
 
@@ -15,8 +16,12 @@ export const MenuProvider = ({ children }: { children: ReactNode }) => {
     setMenuItems(prev => [...prev, item]);
   };
 
+  const removeItem = (id: string) => {
+    setMenuItems(prev => prev.filter(item => item.id !== id));
+  }
+
   return (
-    <MenuContext.Provider value={{ menuItems, addItem }}>
+    <MenuContext.Provider value={{ menuItems, addItem, removeItem }}>
       {children}
     </MenuContext.Provider>
   );
