@@ -1,35 +1,72 @@
 import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { MenuItem } from '../../lib/[types]'
 import { useMenu } from '../../context/MenuContext';
+import React, { useState } from 'react';
 
 export default function MenuItems() {
 
-const { addItem, removeItem, menuItems } = useMenu()
+  const { menuItems } = useMenu();
+  const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
+
+  const courses = ['starter', 'main', 'dessert'];
+
+    const filteredItems =
+    selectedCourse === null
+      ? []
+      : menuItems.filter(
+          item => item.selectedValue.toLowerCase() === selectedCourse.toLowerCase()
+        );
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Menu Items new</Text>
+      <Text style={styles.title}>Menu Items</Text>
 
-              <FlatList
-        data={menuItems}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <View style={{ flex: 1 }}>
-              <Text style={styles.itemTitle}>
-                {item.dishName} - ${item.dishPrice}
-              </Text>
-              <Text>{item.selectedValue}</Text>
-            </View>
-            <TouchableOpacity
-              onPress={() => removeItem(item.id)}
-              style={styles.deleteButton}
+      {/* Course selection buttons */}
+      <View style={styles.courseButtons}>
+        {courses.map(course => (
+          <TouchableOpacity
+            key={course}
+            style={[
+              styles.button,
+              selectedCourse === course && styles.selectedButton,
+            ]}
+            onPress={() =>
+              setSelectedCourse(prev => (prev === course ? null : course))
+            }
+          >
+            <Text
+              style={[
+                styles.buttonText,
+                selectedCourse === course && styles.selectedButtonText,
+              ]}
             >
-              <Text style={styles.deleteText}>✖</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      />
+              {course.charAt(0).toUpperCase() + course.slice(1)}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
+      {/* Show filtered menu items */}
+      {selectedCourse === null ? (
+        <Text style={styles.infoText}>Select a course to view its menu items.</Text>
+      ) : filteredItems.length === 0 ? (
+        <Text style={styles.infoText}>
+          No items found for "{selectedCourse}".
+        </Text>
+      ) : (
+        <FlatList
+          data={filteredItems}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <View style={styles.item}>
+              <Text style={styles.itemTitle}>
+                {item.dishName} - ${item.priceNum.toFixed(2)}
+              </Text>
+              <Text>{item.dishDescript}</Text>
+            </View>
+          )}
+        />
+      )}
 
     </View>
   );
@@ -77,4 +114,28 @@ const styles = StyleSheet.create({
     marginVertical: 4,
     marginHorizontal: 8,
   },
+    title: { 
+    color: '#fff',
+    fontSize: 22, 
+    fontWeight: 'bold', 
+    marginBottom: 10 
+
+  },
+   button: {
+    backgroundColor: '#ddd',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  selectedButton: { backgroundColor: '#007bff' },
+  buttonText: { fontSize: 16 },
+  selectedButtonText: { color: 'white', fontWeight: 'bold' },
+  infoText: { textAlign: 'center', color: '#666', marginTop: 20 
+  },
+  courseButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 16,
+  },
+
 });

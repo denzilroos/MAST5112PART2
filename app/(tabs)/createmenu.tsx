@@ -100,8 +100,9 @@ export default function CreateMenuScreen() {
           <View style={styles.item}>
             <View style={{ flex: 1 }}>
               <Text style={styles.itemTitle}>
-                {item.dishName} - ${item.dishPrice}
+                {item.dishName} - R{item.dishPrice}
               </Text>
+              <Text>{item.dishDescript}</Text>
               <Text>{item.selectedValue}</Text>
             </View>
             <TouchableOpacity
