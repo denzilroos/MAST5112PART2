@@ -4,4 +4,5 @@ export type MenuItem = {
   dishDescript: string;
   selectedValue: string;
   dishPrice: string;
+  priceNum: number
 }

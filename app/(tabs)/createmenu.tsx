@@ -12,7 +12,7 @@ export default function CreateMenuScreen() {
           const [dishName, setDishName] = useState('');
           const [dishDescript, setDishDescript] = useState('');
           const [dishPrice, setDishPrice] = useState('');
-          const [selectedValue, setSelectedValue] = useState('');
+          const [selectedValue, setSelectedValue] = useState<string>('');
 
           //const [menuItems, setMenuItems] = useState<MenuItem[]>([])
 
@@ -22,12 +22,15 @@ export default function CreateMenuScreen() {
               return
           }
 
+          //const parsedPrice = parseFloat(dishPrice);
+
           const newItem : MenuItem = {
            id: Date.now().toString(), 
            dishName, 
            dishDescript, 
            selectedValue, 
-           dishPrice: parseFloat(dishPrice).toFixed(2)
+           dishPrice,
+           priceNum: parseFloat(dishPrice)
           }
 
           //setMenuItems(prevItems => [...prevItems,newItem])
@@ -68,9 +71,9 @@ export default function CreateMenuScreen() {
         }
         style={styles.picker}
       >
-        <Picker.Item label="Starters" value="starterCourse" />
-        <Picker.Item label="Main" value="mainCourse" />
-        <Picker.Item label="Dessert" value="dessertCourse" />
+        <Picker.Item label="Starters" value="starter" />
+        <Picker.Item label="Main" value="main" />
+        <Picker.Item label="Dessert" value="dessert" />
       </Picker>
       <Text style={styles.selectedText}>Selected: {selectedValue}</Text>
 
