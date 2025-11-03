@@ -1,6 +1,6 @@
 import { Text, View,  StyleSheet,FlatList, Image, ImageBackground } from 'react-native';
 import { MenuItem } from '../../lib/[types]'
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import { useMenu } from '../../context/MenuContext';
 
@@ -9,13 +9,14 @@ export default function Index() {
 
   const { menuItems } = useMenu();
 
-  const toNumber = (value: string) => {
+ {/* const toNumber = (value: string) => {
   const n = parseFloat(value);
   return isNaN(n) ? 0 : n;
-};
+}; */}
   
   let numberOfItems= menuItems.length.toString()
 
+  //function to calculate the average price of items by course 
     const averageByCourse = useMemo(() => {
     const courses = ['starter', 'main', 'dessert'];
     const averages: Record<string, number> = {};
@@ -51,15 +52,12 @@ export default function Index() {
 > 
 <View style={styles.container}>
 
-
-     
       <Image
         source={require('../../assets/menuheaderimg.png')} 
         style={styles.headerImage}
         resizeMode="contain"
       /> 
  
-
        <Text style={styles.title}>Menu Overview</Text>
        <Text style={styles.text}>Total number of menu items = {numberOfItems}</Text>
 

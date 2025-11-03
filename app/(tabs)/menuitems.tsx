@@ -9,6 +9,7 @@ export default function MenuItems() {
 
   const courses = ['starter', 'main', 'dessert'];
 
+  //filter menu items by selected course
     const filteredItems =
     selectedCourse === null
       ? []

@@ -1,50 +1,15 @@
-# Welcome to your Expo app 👋
+Final POE Change log
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+1. Added deleting items function :
+I added a function that removes a menu item by pressing a 'remove' button.
+The function removes the item by its unique id and updates the menu shown on the home screen by using the menucontext file to link the information between tabs.
 
-## Get started
+2. Added average price to the main screen:
+I added a function to filter the menu items and sort them by course and then calculate the average price of items per course. I used a for loop to cycle through the different courses and add the price to a 'averages' variable which is used to calculate the total average amount in the 'total' variable.
+I added text elements to display the different courses and their average prices by using the 'averagebycourse' function. 
 
-1. Install dependencies
+3. Added menu courses filter screen:
+I added three buttons to the menu items screen for each course. I added a function to filter and sort the menu items into their different courses so that when a button is pressed it will display a list of menu items for the corresponding course.
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+4. Added image header and image for background of home screen:
+I created a header image for the main home screen and added it to the top of the screen. I downloaded a stock image to use for the background of the main home screen from 'Photo by Lukas: https://www.pexels.com/photo/sliced-bread-on-brown-wooden-board-349610/' 

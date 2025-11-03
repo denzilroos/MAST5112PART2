@@ -14,6 +14,7 @@ export default function CreateMenuScreen() {
           const [dishPrice, setDishPrice] = useState('');
           const [selectedValue, setSelectedValue] = useState<string>('');
 
+          //function to add menu items
           const addMenuItem = () => {
             if (!dishName || !dishDescript || !selectedValue || !dishPrice) {
               alert('Please fill in all fields')
@@ -87,6 +88,7 @@ export default function CreateMenuScreen() {
         onPress={addMenuItem}
         color="#841584"
         />
+
 
               <FlatList
         data={menuItems}

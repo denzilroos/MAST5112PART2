@@ -1,5 +1,4 @@
 import { Tabs } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { MenuProvider } from '../../context/MenuContext';
 
@@ -11,7 +10,7 @@ export default function TabLayout() {
     screenOptions={{
         tabBarActiveTintColor: '#ffd33d',
       }}>
-      <Tabs.Screen name="index" 
+      <Tabs.Screen name="index" //home screen for displaying menu items, the amount of items and average prices of courses
                    options={{ 
                     title: 'Home',
                     tabBarIcon: ({ color, focused }) => (
@@ -19,7 +18,7 @@ export default function TabLayout() {
                     ),
                   }}
                />
-      <Tabs.Screen name="menuitems" 
+      <Tabs.Screen name="menuitems" // screen for displaying menu items by selecting a course 
                    options={{ 
                       title: 'Menu Items',
           tabBarIcon: ({ color, focused }) => (
@@ -27,7 +26,7 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen name="createmenu"
+      <Tabs.Screen name="createmenu" //screen for creating menu items by adding the item details and displaying them in a list with a remove button to remove the item
                    options={{ 
                       title: 'Create menu',
           tabBarIcon: ({ color, focused }) => (
