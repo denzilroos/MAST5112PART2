@@ -14,15 +14,11 @@ export default function CreateMenuScreen() {
           const [dishPrice, setDishPrice] = useState('');
           const [selectedValue, setSelectedValue] = useState<string>('');
 
-          //const [menuItems, setMenuItems] = useState<MenuItem[]>([])
-
           const addMenuItem = () => {
             if (!dishName || !dishDescript || !selectedValue || !dishPrice) {
               alert('Please fill in all fields')
               return
           }
-
-          //const parsedPrice = parseFloat(dishPrice);
 
           const newItem : MenuItem = {
            id: Date.now().toString(), 
@@ -33,7 +29,6 @@ export default function CreateMenuScreen() {
            priceNum: parseFloat(dishPrice)
           }
 
-          //setMenuItems(prevItems => [...prevItems,newItem])
           addItem(newItem)
           setDishName('')
           setDishDescript('')
@@ -63,7 +58,7 @@ export default function CreateMenuScreen() {
             style={styles.textInput}
           />
 
- <Text style={styles.label}>Select a course:</Text>
+ <Text style={styles.text}>Select a course:</Text>
       <Picker
         selectedValue={selectedValue}
         onValueChange={(itemValue, itemIndex) =>
@@ -109,16 +104,12 @@ export default function CreateMenuScreen() {
               onPress={() => removeItem(item.id)}
               style={styles.deleteButton}
             >
-              <Text style={styles.deleteText}>✖</Text>
+              <Text style={styles.deleteText}>Remove</Text>
             </TouchableOpacity>
           </View>
         )}
       />
-
     </View>
-
-
-
   );
 }
 

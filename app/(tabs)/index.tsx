@@ -1,11 +1,9 @@
-import { Text, View,  StyleSheet,FlatList } from 'react-native';
-import { Link } from 'expo-router';
+import { Text, View,  StyleSheet,FlatList, Image, ImageBackground } from 'react-native';
 import { MenuItem } from '../../lib/[types]'
 import React, { useState, useMemo } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { MenuProvider } from '../../context/MenuContext';
+
 import { useMenu } from '../../context/MenuContext';
-import { Platform } from 'react-native';
+
 
 export default function Index() {
 
@@ -15,17 +13,9 @@ export default function Index() {
   const n = parseFloat(value);
   return isNaN(n) ? 0 : n;
 };
-
-  
   
   let numberOfItems= menuItems.length.toString()
 
-  /**
-   * 🧮 Calculate average price per course
-   * 
-   * We’ll loop through each course type, filter the menuItems,
-   * and compute an average for that category.
-   */
     const averageByCourse = useMemo(() => {
     const courses = ['starter', 'main', 'dessert'];
     const averages: Record<string, number> = {};
@@ -54,33 +44,44 @@ export default function Index() {
   )
 
   return (
-    <View style={styles.container}>
+   <ImageBackground
+  source={require('../../assets/menubackground.jpg')}
+  style={{ flex: 1, padding: 16 }}
+  resizeMode="cover"
+> 
+<View style={styles.container}>
 
-      
 
-       <Text style={styles.title}>📋 Menu Overview</Text>
+     
+      <Image
+        source={require('../../assets/menuheaderimg.png')} 
+        style={styles.headerImage}
+        resizeMode="contain"
+      /> 
+ 
+
+       <Text style={styles.title}>Menu Overview</Text>
        <Text style={styles.text}>Total number of menu items = {numberOfItems}</Text>
 
-      {/* 🧾 Summary of average prices per course */}
       <View style={styles.summaryContainer}>
         <Text style={styles.summaryTitle}>Average Price by Course</Text>
         <View style={styles.summaryRow}>
           <Text style={styles.summaryItem}>
             Starter:{' '}
             {averageByCourse.starter
-              ? `$${averageByCourse.starter.toFixed(2)}`
+              ? `R${averageByCourse.starter.toFixed(2)}`
               : 'N/A'}
           </Text>
           <Text style={styles.summaryItem}>
             Main:{' '}
             {averageByCourse.main
-              ? `$${averageByCourse.main.toFixed(2)}`
+              ? `R${averageByCourse.main.toFixed(2)}`
               : 'N/A'}
           </Text>
           <Text style={styles.summaryItem}>
             Dessert:{' '}
             {averageByCourse.dessert
-              ? `$${averageByCourse.dessert.toFixed(2)}`
+              ? `R${averageByCourse.dessert.toFixed(2)}`
               : 'N/A'}
           </Text>
         </View>
@@ -96,6 +97,7 @@ export default function Index() {
         />
       
     </View>
+    </ImageBackground>
   );
 }
 
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
   },
     summaryTitle: { fontWeight: 'bold', fontSize: 16, marginBottom: 6 },
   summaryRow: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
   },
   summaryItem: { fontSize: 14, color: '#007bff', fontWeight: '600' },
@@ -165,7 +167,11 @@ const styles = StyleSheet.create({
     fontSize: 22, 
     fontWeight: 'bold', 
     marginBottom: 10 
-
+  },
+   headerImage: {
+    width: '100%',
+    height: 120,
+    marginBottom: 10,
   },
 
 });

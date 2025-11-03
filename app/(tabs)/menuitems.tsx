@@ -1,5 +1,4 @@
 import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { MenuItem } from '../../lib/[types]'
 import { useMenu } from '../../context/MenuContext';
 import React, { useState } from 'react';
 
@@ -21,7 +20,6 @@ export default function MenuItems() {
     <View style={styles.container}>
       <Text style={styles.title}>Menu Items</Text>
 
-      {/* Course selection buttons */}
       <View style={styles.courseButtons}>
         {courses.map(course => (
           <TouchableOpacity
@@ -46,7 +44,6 @@ export default function MenuItems() {
         ))}
       </View>
 
-      {/* Show filtered menu items */}
       {selectedCourse === null ? (
         <Text style={styles.infoText}>Select a course to view its menu items.</Text>
       ) : filteredItems.length === 0 ? (
