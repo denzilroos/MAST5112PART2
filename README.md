@@ -13,3 +13,6 @@ I added three buttons to the menu items screen for each course. I added a functi
 
 4. Added image header and image for background of home screen:
 I created a header image for the main home screen and added it to the top of the screen. I downloaded a stock image to use for the background of the main home screen from 'Photo by Lukas: https://www.pexels.com/photo/sliced-bread-on-brown-wooden-board-349610/' 
+
+5. Updated readme file, cleaned up code and added comments
+I updated the readme file to include changes since part 2 of the POE. I cleaned up the code by removing any unused imports, variables or old code. I added comments to the code to indicate what different parts of the code does.
